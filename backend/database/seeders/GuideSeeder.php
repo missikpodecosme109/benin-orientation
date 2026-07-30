@@ -17,7 +17,11 @@ class GuideSeeder extends Seeder
         $path = database_path('data/guido_data.json');
         $data = json_decode(file_get_contents($path), true);
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        $isMysql = DB::getDriverName() === 'mysql';
+
+        if ($isMysql) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
         DB::table('filiere_serie_matiere')->truncate();
         DB::table('filiere_serie')->truncate();
         DB::table('filiere_debouches')->truncate();
@@ -27,7 +31,9 @@ class GuideSeeder extends Seeder
         Universite::truncate();
         Matiere::truncate();
         Serie::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if ($isMysql) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
 
         $seriesCache = [];
         $matieresCache = [];
