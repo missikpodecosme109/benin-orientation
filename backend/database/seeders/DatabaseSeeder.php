@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GuideSeeder::class,
             CoefficientsBacSeeder::class,
+            AdminUserSeeder::class,
         ]);
     }
 }
