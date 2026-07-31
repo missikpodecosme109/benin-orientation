@@ -21,7 +21,9 @@ return [
 
     'allowed_origins' => array_filter(explode(',', env('CORS_ALLOWED_ORIGINS', 'http://localhost:3000'))),
 
-    'allowed_origins_patterns' => [],
+    // Autorise tous les sous-domaines vercel.app (production + previews) sans
+    // dépendre d'une variable d'environnement à tenir à jour à chaque déploiement.
+    'allowed_origins_patterns' => ['#^https://[a-z0-9-]+\.vercel\.app$#i'],
 
     'allowed_headers' => ['*'],
 
