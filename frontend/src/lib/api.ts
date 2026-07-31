@@ -1,6 +1,6 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
-function getToken(): string | null {
+export function getToken(): string | null {
   if (typeof window === "undefined") return null;
   return localStorage.getItem("bo_token");
 }
@@ -61,6 +61,7 @@ export interface Matiere {
 export interface Universite {
   id: number;
   nom: string;
+  sigle?: string | null;
   etablissements_count?: number;
 }
 
@@ -76,6 +77,7 @@ export interface Etablissement {
 export interface Filiere {
   id: number;
   nom: string;
+  etablissement_id: number;
   quota_bourse: number;
   quota_aide_fpp: number;
   mode_entree: "classement" | "concours" | "dossier";

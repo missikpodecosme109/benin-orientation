@@ -1,5 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Api\Admin\DebboucheController as AdminDebboucheController;
+use App\Http\Controllers\Api\Admin\EtablissementController as AdminEtablissementController;
+use App\Http\Controllers\Api\Admin\ExportController as AdminExportController;
+use App\Http\Controllers\Api\Admin\FiliereController as AdminFiliereController;
+use App\Http\Controllers\Api\Admin\ImportController as AdminImportController;
+use App\Http\Controllers\Api\Admin\MatiereController as AdminMatiereController;
+use App\Http\Controllers\Api\Admin\SerieController as AdminSerieController;
+use App\Http\Controllers\Api\Admin\SimulationController as AdminSimulationController;
+use App\Http\Controllers\Api\Admin\UniversiteController as AdminUniversiteController;
+use App\Http\Controllers\Api\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EtablissementController;
 use App\Http\Controllers\Api\FavoriController;
@@ -41,4 +52,24 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/favoris', [FavoriController::class, 'index']);
     Route::post('/favoris', [FavoriController::class, 'store']);
     Route::delete('/favoris/{favori}', [FavoriController::class, 'destroy']);
+});
+
+Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'stats']);
+
+    Route::apiResource('universites', AdminUniversiteController::class)->parameters(['universites' => 'universite']);
+    Route::apiResource('etablissements', AdminEtablissementController::class)->parameters(['etablissements' => 'etablissement']);
+    Route::apiResource('filieres', AdminFiliereController::class)->parameters(['filieres' => 'filiere']);
+    Route::apiResource('series', AdminSerieController::class)->parameters(['series' => 'serie']);
+    Route::apiResource('matieres', AdminMatiereController::class)->parameters(['matieres' => 'matiere']);
+    Route::apiResource('debouches', AdminDebboucheController::class)->only(['index', 'store', 'update', 'destroy'])->parameters(['debouches' => 'debouche']);
+
+    Route::get('/simulations', [AdminSimulationController::class, 'index']);
+    Route::get('/simulations/{simulation}', [AdminSimulationController::class, 'show']);
+    Route::delete('/simulations/{simulation}', [AdminSimulationController::class, 'destroy']);
+
+    Route::apiResource('utilisateurs', AdminUserController::class)->parameters(['utilisateurs' => 'user']);
+
+    Route::get('/export/{type}', [AdminExportController::class, 'export']);
+    Route::post('/import/filieres', [AdminImportController::class, 'importerFilieres']);
 });

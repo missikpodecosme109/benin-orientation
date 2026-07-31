@@ -10,6 +10,7 @@ import {
   LogOut,
   Menu,
   Search,
+  Shield,
   Sparkles,
   X,
 } from "lucide-react";
@@ -55,6 +56,15 @@ export function Navbar() {
           <ThemeToggle />
           {loading ? null : user ? (
             <>
+              {user.role === "admin" && (
+                <Link
+                  href="/admin"
+                  className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-black/[0.04] hover:text-brand-600 dark:hover:bg-white/[0.06]"
+                >
+                  <Shield className="h-4 w-4" />
+                  Admin
+                </Link>
+              )}
               <Link
                 href="/tableau-de-bord"
                 className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-black/[0.04] hover:text-brand-600 dark:hover:bg-white/[0.06]"
@@ -117,6 +127,16 @@ export function Navbar() {
               <div className="mt-2 flex flex-col gap-2 border-t border-border pt-2">
                 {user ? (
                   <>
+                    {user.role === "admin" && (
+                      <Link
+                        href="/admin"
+                        className="flex items-center gap-2 rounded-lg px-2 py-2.5 text-sm font-medium hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
+                        onClick={() => setOuvert(false)}
+                      >
+                        <Shield className="h-4 w-4" />
+                        Administration
+                      </Link>
+                    )}
                     <Link
                       href="/tableau-de-bord"
                       className="flex items-center gap-2 rounded-lg px-2 py-2.5 text-sm font-medium hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
