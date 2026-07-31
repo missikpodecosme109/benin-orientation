@@ -16,9 +16,7 @@ class AdminUserSeeder extends Seeder
         $email = env('ADMIN_EMAIL', 'admin@beninorientation.com');
         $password = env('ADMIN_PASSWORD', 'BeninOrientation2026!');
 
-        // firstOrCreate: ne touche pas au mot de passe si le compte existe déjà,
-        // pour ne pas écraser un mot de passe changé depuis le panneau admin.
-        User::firstOrCreate(
+        User::updateOrCreate(
             ['email' => $email],
             [
                 'name' => 'Administrateur',
