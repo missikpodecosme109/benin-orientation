@@ -40,8 +40,8 @@ export default async function FiliereDetailPage({
             {filiere.nom}
           </h1>
           {filiere.etablissement && (
-            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-muted-foreground">
-              <Building2 className="h-4 w-4" />
+            <p className="mt-1 flex flex-wrap items-start gap-1.5 text-muted-foreground">
+              <Building2 className="mt-0.5 h-4 w-4 shrink-0" />
               <Link
                 href={`/etablissements/${filiere.etablissement.id}`}
                 className="hover:text-brand-600"

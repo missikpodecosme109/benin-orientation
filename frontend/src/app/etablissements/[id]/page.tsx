@@ -34,8 +34,8 @@ export default async function EtablissementDetailPage({
               : etablissement.nom}
           </h1>
           {etablissement.universite && (
-            <p className="mt-1 flex items-center gap-1.5 text-muted-foreground">
-              <GraduationCap className="h-4 w-4" />
+            <p className="mt-1 flex items-start gap-1.5 text-muted-foreground">
+              <GraduationCap className="mt-0.5 h-4 w-4 shrink-0" />
               <Link
                 href={`/universites/${etablissement.universite.id}`}
                 className="hover:text-brand-600"

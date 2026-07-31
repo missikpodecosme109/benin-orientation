@@ -130,8 +130,8 @@ export default function FilieresPage() {
                 <h2 className="mt-3 font-semibold leading-snug group-hover:text-brand-600">
                   {filiere.nom}
                 </h2>
-                <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground">
-                  <Building2 className="h-3.5 w-3.5" />
+                <p className="mt-1 flex items-start gap-1 text-sm text-muted-foreground">
+                  <Building2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                   {filiere.etablissement?.nom}
                 </p>
                 <Badge variant="neutral" className="mt-3 capitalize">
